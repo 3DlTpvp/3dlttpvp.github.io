@@ -2016,13 +2016,14 @@ Game.Launch=function()
 			}
 			return result;
 		}
-		
+		Game.
 		Game.cookiesEarned=0;//all cookies earned during gameplay
 		Game.cookies=0;//cookies
 		Game.cookiesd=0;//cookies display
 		Game.cookiesPs=1;//cookies per second (to recalculate with every new purchase)
 		Game.cookiesPsRaw=0;//raw cookies per second
 		Game.cookiesPsRawHighest=0;//highest raw cookies per second this ascension
+		Game.heralds = 0;//Makes sure heralds are set to 0
 		Game.cookiesReset=0;//cookies lost to resetting (used to determine prestige and heavenly chips)
 		Game.cookieClicks=0;//+1 for each click on the cookie
 		Game.goldenClicks=0;//+1 for each golden cookie clicked (all time)
@@ -2490,7 +2491,7 @@ Game.Launch=function()
 		
 		Game.grandmaNames=['Granny','Gusher','Ethel','Edna','Doris','Maud','Hilda','Gladys','Michelle','Michele','Phyllis','Millicent','Muriel','Myrtle','Mildred','Mavis','Helen','Gloria','Sheila','Betty','Gertrude','Agatha','Beryl','Agnes','Pearl','Precious','Ruby','Vera','Bonnie','Ada','Bunny','Cookie','Darling','Gaga','GamGam','Memaw','Mimsy','Peanut','Nana','Nan','Tootsie','Warty','Stinky','Heinous'];
 		Game.customGrandmaNames=[];
-		Game.heralds=0;
+		Game.heralds=1;
 		
 		Game.GrabData=function()
 		{
@@ -3078,7 +3079,7 @@ Game.Launch=function()
 							}
 							else
 							{
-								me.amount=0;me.unlocked=0;me.bought=0;me.highest=0;me.totalCookies=0;me.level=0;
+								me.amount=0;me.unlocked=0;me.bought=0;me.highest=0;me.totalCookies=0;me.level=0;me.heralds=1;
 							}
 						}
 						
@@ -3263,7 +3264,7 @@ Game.Launch=function()
 						Game.computeSeasonPrices();
 						
 						//recompute prestige
-						Game.prestige=Math.floor(Game.HowMuchPrestige(Game.cookiesReset));
+						Game.prestige=Math.floor(Game.HowMuchPrestige(heralds=1));
 						//if ((Game.heavenlyChips+Game.heavenlyChipsSpent)<Game.prestige)
 						//{Game.heavenlyChips=Game.prestige;Game.heavenlyChipsSpent=0;}//chips owned and spent don't add up to total prestige? set chips owned to prestige
 						
@@ -16014,7 +16015,7 @@ Game.Launch=function()
 			str+='<a class="option neato" '+Game.clickStr+'="Game.EditAscend();">'+(Game.DebuggingPrestige?'Exit Ascend Edit':'Ascend Edit')+'</a>';
 			str+='<a class="option neato" '+Game.clickStr+'="Game.DebugUpgradeCpS();">Debug upgrades CpS</a>';
 			str+='<a class="option neato" '+Game.clickStr+'="Game.seed=Game.makeSeed();">Re-seed</a>';
-			str+='<a class="option neato" '+Game.clickStr+'="Game.heralds=100;l(\'heraldsAmount\').textContent=Game.heralds;Game.externalDataLoaded=true;Game.recalculateGains=1;">Max heralds</a>';
+			str+='<a class="option neato" '+Game.clickStr+'="Game.heralds=1;l(\'heraldsAmount\').textContent=Game.heralds;Game.externalDataLoaded=true;Game.recalculateGains=1;">Reset heralds</a>';
 			str+='<div class="line"></div>';
 			for (var i=0;i<Game.goldenCookieChoices.length/2;i++)
 			{
